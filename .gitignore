@@ -1,0 +1,4 @@
+wahlprogramme/
+venv/
+__pycache__/
+*.pyc
