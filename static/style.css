@@ -1,13 +1,20 @@
-html[lang="de"] q {
-  quotes: "„" "“"
+@font-face {
+  font-family: 'aleoregular';
+  src: url('Aleo-Regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
   text-align: center;
-  font-family: ibm-plex-sans,Helvetica Neue,Arial,sans-serif;
+  font-family: aleoregular;
   font-size: 1.2em;
   margin: 0;
   padding: 0;
+}
+
+body a {
+  text-decoration: none;
 }
 
 header {
@@ -38,7 +45,6 @@ header {
     display: block;
     background: #dedede;
     color: #04394b;
-    text-decoration: none;
     font-size: 1.5em;
     float: right;
     width: 1.5em;
@@ -50,6 +56,8 @@ header {
 
   header a:hover {
     background: #d0d0d0;
+    transform: scale(1.1) rotate(360deg);
+    transition-duration: .2s;
   }
 
 section {
@@ -63,6 +71,25 @@ section {
   section q {
     display: inline-block;
     max-width: 700px;
+    min-height: 4em;
+    vertical-align: middle;
+    quotes: "" "";
+  }
+
+  section .leftquote {
+    display: inline-block;
+    content: "„";
+    color: #aaa;
+    font-size: 4em;
+    display: inline-block;
+    padding: .5em;
+  }
+
+  section .rightquote {
+    padding: .5em;
+    font-size: 4em;
+    display: inline-block;
+    color: #aaa;
   }
 
   section blockquote {
@@ -78,11 +105,6 @@ section {
     section blockquote p {
       margin: .5em 0;
     }
-
-  section span {
-    display: block;
-    float: left;
-  }
 
 button {
   margin: 2em 0 0 0;
