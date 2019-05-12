@@ -106,19 +106,23 @@ section {
       margin: .5em 0;
     }
 
-button {
-  margin: 2em 0 0 0;
-  padding: .5em 1em;
+button, .btn {
+  margin: 2em .5em 0 0;
+  padding: .5em .75em;
   background: #b7e2f2;
+  color: #04394b;
   border: 1px solid #44707f;
   box-shadow: 0 0 5px -2px #44707f;
+  font-size: 1em;
+  display: inline-block;
+  line-height: 1em;
 }
 
-button:hover {
+button:hover, .btn:hover {
   background: #a5cedd;
 }
 
-button:active {
+button:active, .btn:active {
   box-shadow: 0 0 5px -0px #44707f inset;
 }
 
