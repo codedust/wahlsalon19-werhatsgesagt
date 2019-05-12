@@ -13,6 +13,12 @@ body {
   padding: 0;
 }
 
+@media (max-width:1024px) {
+  body {
+    font-size: 2em;
+  }
+}
+
 body a {
   text-decoration: none;
 }
@@ -71,7 +77,6 @@ section {
   section q {
     display: inline-block;
     min-height: 4em;
-    font-size: 2em;
     vertical-align: middle;
     quotes: "" "";
   }
@@ -93,7 +98,6 @@ section {
   @media (min-width:1025px) {
     section q {
       max-width: 700px;
-      font-size: 1em;
     }
 
     section .leftquote, section .rightquote {
