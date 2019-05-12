@@ -38,7 +38,7 @@ for party in list(election_programs.keys()):
     if not os.path.isfile(path):
         print('No program for party ' + party + '!')
         continue
-    with open(path) as f:
+    with open(path, 'r+', encoding="utf-8") as f:
         content = f.readlines()
     programs[party] = list(filter(lambda line: line != '', [x.strip().replace('\*', '*') for x in content]))
 
