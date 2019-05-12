@@ -8,16 +8,49 @@ body {
   font-size: 1.2em;
   margin: 0;
   padding: 0;
-  background: s#ececec;
 }
 
-h1 {
-  font-weight: bold;
-  color: #04394b;
-  background: white;
-  margin: 0;
-  padding: .75em;
+header {
+  text-align: left;
+  background: #fafafa;
+  padding: 1em 1em 0 2.5em;
 }
+
+  header h1 {
+    font-weight: bold;
+    text-shadow: 2px 2px #ececec;
+    color: #04394b;
+    margin: 0;
+    padding: 0;
+  }
+
+  header span {
+    background: #fed957;
+    color: #04394b;
+    font-weight: bold;
+    padding: .25em .5em .25em .33em;
+    margin: .5em .25em 1em 0;
+    font-size: 0.9em;
+    display: inline-block;
+  }
+
+  header a {
+    display: block;
+    background: #dedede;
+    color: #04394b;
+    text-decoration: none;
+    font-size: 1.5em;
+    float: right;
+    width: 1.5em;
+    height: 1.75em;
+    line-height: 1.75em;
+    padding: 0 .125em;
+    text-align: center;
+  }
+
+  header a:hover {
+    background: #d0d0d0;
+  }
 
 section {
   background: #c3e5f1;
@@ -27,24 +60,34 @@ section {
   box-shadow: 0 4px 7px -5px #44707f inset;
 }
 
-section q {
-  display: inline-block;
-  max-width: 700px;
-}
+  section q {
+    display: inline-block;
+    max-width: 700px;
+  }
 
-section blockquote {
-  margin-top: 2em;
-  text-align: left;
-}
+  section blockquote {
+    font-size: .9em;
+    margin: 2em 0 0 0;
+    text-align: justify;
+  }
 
-section blockquote h3 {
-  font-weight: normal;
-}
+    section blockquote h3 {
+      font-weight: normal;
+    }
+
+    section blockquote p {
+      margin: .5em 0;
+    }
+
+  section span {
+    display: block;
+    float: left;
+  }
 
 button {
   margin: 2em 0 0 0;
   padding: .5em 1em;
-  background: #c3e5f1;
+  background: #b7e2f2;
   border: 1px solid #44707f;
   box-shadow: 0 0 5px -2px #44707f;
 }
@@ -100,13 +143,15 @@ button:active {
   filter: saturate(.1);
 }
 
+footer {
+  background: #ececec;
+  min-height: 10em;
+  margin: 2em 0 0 0;
+  padding: 2em;
+  text-align: left;
+  font-size: .8em;
+}
 
-.desaturate { filter: saturate(.2); }
-.grayscale { filter: grayscale(100%); }
-.contrast { filter: contrast(20%); }
-.brightness { filter: brightness(1.95); }
-.blur { filter: blur(3px); }
-.invert { filter: invert(100%); }
-.sepia { filter: sepia(100%); }
-.huerotate { filter: hue-rotate(180deg); }
-.rss.opacity { filter: opacity(50%); }
+  footer p {
+    margin: .5em 0;
+  }

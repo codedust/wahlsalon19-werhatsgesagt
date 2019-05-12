@@ -25,7 +25,7 @@ $('.partybutton').click(function(el){
     $('.partybutton[data-party="'+party+'"]').addClass('correct');
     $('.partybutton').addClass('desaturate');
     $('.partybutton[data-party="'+party+'"]').removeClass('desaturate');
-    $('blockquote').html('<h3>' + current_question.headline + '</h3>' + current_question.long);
+    $('blockquote').html('<h3>' + current_question.headline + '</h3>' + current_question.long + '– <a target="_blanc" href="' + current_question.url + '"><cite>' + current_question.programName + '</cite></a>');
     $('blockquote').html($('blockquote').html().replace(current_question.short, '<strong>' + current_question.short + '</strong>'));
   } else {
     $('.partybutton[data-party="'+party+'"]').addClass('wrong');

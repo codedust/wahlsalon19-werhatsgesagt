@@ -1,5 +1,5 @@
 # Wer hat's gesagt?
-Wahlprogrammquiz zur Europawahl. Entstanden während des [Wahlsalon 2019](https://datengui.de/wahlsalon/) von von [Code for Germany](https://codefor.de/) und [Datenguide](https://datengui.de/) in Berlin.
+Wahlprogrammquiz zur Europawahl. Entstanden beim [Wahlsalon 2019](https://datengui.de/wahlsalon/) von [Code for Germany](https://codefor.de/) und [Datenguide](https://datengui.de/) in Berlin.
 
 Nach einer Idee von Nicolas Merz ([Wahlsalon 2017](https://codefor.de/projekte/2017-05-24-wahlprogrammat.html)).
 
