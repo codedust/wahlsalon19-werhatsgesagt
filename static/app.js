@@ -1,7 +1,7 @@
-var current_question = {};
+var current_quote = {};
 var nextCiteTimeout = null;
 
-function nextCite(){
+function nextCite(hash){
   if (nextCiteTimeout != null) {
     window.clearTimeout(nextCiteTimeout);
     nextCiteTimeout = null;
@@ -11,22 +11,36 @@ function nextCite(){
   $('.partybutton').removeClass('desaturate');
   $('blockquote').text('');
 
-  $.getJSON("api/question", function( data ) {
-    current_question = data;
+  var request_url = 'api/quote';
+  try {
+    params = atob(hash.substr(1)).split(',');
+    if (params.length == 3) {
+      request_url = 'api/quote/' + encodeURI(params[2]) + '/' + parseInt(params[0]) + '/' + parseInt(params[1]);
+    }
+  } catch(e) {
+    request_url = 'api/quote';
+  }
+
+  $.getJSON(request_url, function( data ) {
+    current_quote = data;
     $('q').text(data.short);
+    location.hash = btoa(data.line_number + ',' + data.sentence_number + ',' + data.party);
   });
 }
-nextCite();
+nextCite(location.hash);
+
+window.onhashchange = function() {
+  nextCite(location.hash);
+};
 
 $('.partybutton').click(function(el){
-  console.log(el);
   var party = $(el.delegateTarget).attr('data-party');
-  if (party == current_question.party) {
+  if (party == current_quote.party) {
     $('.partybutton[data-party="'+party+'"]').addClass('correct');
     $('.partybutton').addClass('desaturate');
     $('.partybutton[data-party="'+party+'"]').removeClass('desaturate');
-    $('blockquote').html('<h3>' + current_question.headline + '</h3>' + current_question.long + '– <a target="_blank" href="' + current_question.url + '"><cite>' + current_question.programName + '</cite></a>');
-    $('blockquote').html($('blockquote').html().replace(current_question.short_not_redacted, '<strong>' + current_question.short_not_redacted + '</strong>'));
+    $('blockquote').html('<h3>' + current_quote.headline + '</h3>' + current_quote.long + '– <a target="_blank" href="' + current_quote.url + '"><cite>' + current_quote.programName + '</cite></a>');
+    $('blockquote').html($('blockquote').html().replace(current_quote.short_not_redacted, '<strong>' + current_quote.short_not_redacted + '</strong>'));
   } else {
     $('.partybutton[data-party="'+party+'"]').addClass('wrong');
   }

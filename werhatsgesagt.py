@@ -75,49 +75,87 @@ def find_paragraph(party, line_number):
 def index():
     return current_app.send_static_file('index.html')
 
-@app.route('/api/question')
-def api_question():
-    party = list(programs.keys())[randint(0, len(programs) - 1)]
-    sentence = '#'
-    while sentence == '#':
-        line = '#'
-        while line[0] == '#':
-            line_number = randint(0, len(programs[party]) - 1)
-            line = programs[party][line_number]
+@app.route('/api/quote')
+def api_quote():
+    return get_quote()
 
+@app.route('/api/quote/<party>/<line_number>/<sentence_number>')
+def api_quote_by_param(party, line_number, sentence_number):
+    return get_quote(party, int(line_number), int(sentence_number))
+
+def json_error(reason):
+    return jsonify({
+        'short': reason,
+        'short_not_redacted': '',
+        'long': '',
+        'headline': '',
+        'party': '',
+        'line_number': '',
+        'sentence_number' : '',
+        'programName': '',
+        'url': '',
+    })
+
+def get_quote(party=None, line_number=None, sentence_number=None):
+    if party is None:
+        party = list(programs.keys())[randint(0, len(programs) - 1)]
+    elif party not in list(programs.keys()):
+        return json_error("Keine gültige Partei")
+
+    while True:
+        if line_number is None:
+            sentence_number = None # might be the case in any but the first iteration of the while loop
+            line = '#'
+            while line[0] == '#':
+                line_number = randint(0, len(programs[party]) - 1)
+                line = programs[party][line_number]
+        elif line_number < 0 or line_number >= len(programs[party]):
+            return json_error("Ungültige Zeile")
+
+        line = programs[party][line_number]
         headline = headline_from_line_number(party, line_number)
         paragraph = find_paragraph(party, line_number)
-
         sentences = tokenize.sent_tokenize(line, language='german')
-        sentence = sentences[randint(0, len(sentences) - 1)]
-        if sentence[-1] in [':', ',']:
-            sentence = '#'
-        if sentence[0:2] == '- ':
-            sentence = sentence[2:]
-        if sentence[0] in ['1', '2', '3', '4', '5', '6', '7', '8', '9']:
-            sentence = '#'
 
+        if sentence_number is None:
+            sentence_number = randint(0, len(sentences) - 1)
+        elif sentence_number < 0 or sentence_number >= len(sentences):
+            return json_error("Ungültiger Satz")
 
-        sentence_redacted = sentence
-        sentence_redacted = sentence_redacted.replace('AfD', '[Partei]')
-        sentence_redacted = sentence_redacted.replace('Alternative für Deutschland', '[Partei]')
-        sentence_redacted = sentence_redacted.replace('CDU', '[Partei]')
-        sentence_redacted = sentence_redacted.replace('DIE LINKE', '[Partei]')
-        sentence_redacted = sentence_redacted.replace('Wir Freie Demokraten', 'Wir')
-        sentence_redacted = sentence_redacted.replace('BÜNDNIS 90/DIE GRÜNEN', '[Partei]')
-        sentence_redacted = sentence_redacted.replace('Wir GRÜNEN', 'Wir')
-        sentence_redacted = sentence_redacted.replace('GRÜNEN', '[Partei]')
-        sentence_redacted = sentence_redacted.replace('SPD', '[Partei]')
+        quote = sentences[sentence_number]
 
-    return jsonify({
-        'short': sentence_redacted,
-        'short_not_redacted': sentence,
-        'long': paragraph,
-        'headline': headline,
-        'party': party,
-        'programName': election_programs[party]['program_name'],
-        'url': election_programs[party]['url'],
-    })
+        if quote[-1] in [':', ',']:
+            line_number == None
+            continue
+        if quote[0:2] == '- ':
+            line_number == None
+            continue
+        if quote[0] in ['1', '2', '3', '4', '5', '6', '7', '8', '9']:
+            line_number == None
+            continue
+
+        quote_redacted = quote
+        quote_redacted = quote_redacted.replace('AfD', '[Partei]')
+        quote_redacted = quote_redacted.replace('Alternative für Deutschland', '[Partei]')
+        quote_redacted = quote_redacted.replace('CDU', '[Partei]')
+        quote_redacted = quote_redacted.replace('DIE LINKE', '[Partei]')
+        quote_redacted = quote_redacted.replace('Wir Freie Demokraten', 'Wir')
+        quote_redacted = quote_redacted.replace('BÜNDNIS 90/DIE GRÜNEN', '[Partei]')
+        quote_redacted = quote_redacted.replace('Wir GRÜNEN', 'Wir')
+        quote_redacted = quote_redacted.replace('GRÜNEN', '[Partei]')
+        quote_redacted = quote_redacted.replace('SPD', '[Partei]')
+
+        return jsonify({
+            'short': quote_redacted,
+            'short_not_redacted': quote,
+            'long': paragraph,
+            'headline': headline,
+            'party': party,
+            'line_number': line_number,
+            'sentence_number' : sentence_number,
+            'programName': election_programs[party]['program_name'],
+            'url': election_programs[party]['url'],
+        })
 
 @app.route('/api/program/<party>')
 def api_program(party):
