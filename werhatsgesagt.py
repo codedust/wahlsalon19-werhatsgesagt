@@ -40,6 +40,11 @@ for party in list(election_programs.keys()):
         continue
     with open(path, 'r+', encoding="utf-8") as f:
         content = f.readlines()
+    if content[0][:3] == '```':
+        skip_lines = 1
+        while content[skip_lines][:3] != '```':
+            skip_lines += 1
+        content = content[skip_lines + 1:]
     programs[party] = list(filter(lambda line: line != '', [x.strip().replace('\*', '*') for x in content]))
 
 print('Found ' + str(len(programs)) + ' programs: ' + ', '.join(list(programs.keys())))
@@ -125,13 +130,13 @@ def get_quote(party=None, line_number=None, sentence_number=None):
         quote = sentences[sentence_number]
 
         if quote[-1] in [':', ',']:
-            line_number == None
+            line_number = None
             continue
         if quote[0:2] == '- ':
-            line_number == None
+            line_number = None
             continue
         if quote[0] in ['1', '2', '3', '4', '5', '6', '7', '8', '9']:
-            line_number == None
+            line_number = None
             continue
 
         quote_redacted = quote
