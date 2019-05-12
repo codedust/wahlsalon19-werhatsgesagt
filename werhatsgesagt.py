@@ -97,18 +97,21 @@ def api_question():
         if sentence[0] in ['1', '2', '3', '4', '5', '6', '7', '8', '9']:
             sentence = '#'
 
-        sentence = sentence.replace('AfD', '[Partei]')
-        sentence = sentence.replace('Alternative für Deutschland', '[Partei]')
-        sentence = sentence.replace('CDU', '[Partei]')
-        sentence = sentence.replace('DIE LINKE', '[Partei]')
-        sentence = sentence.replace('Wir Freie Demokraten', 'Wir')
-        sentence = sentence.replace('BÜNDNIS 90/DIE GRÜNEN', '[Partei]')
-        sentence = sentence.replace('Wir GRÜNEN', 'Wir')
-        sentence = sentence.replace('GRÜNEN', '[Partei]')
-        sentence = sentence.replace('SPD', '[Partei]')
+
+        sentence_redacted = sentence
+        sentence_redacted = sentence_redacted.replace('AfD', '[Partei]')
+        sentence_redacted = sentence_redacted.replace('Alternative für Deutschland', '[Partei]')
+        sentence_redacted = sentence_redacted.replace('CDU', '[Partei]')
+        sentence_redacted = sentence_redacted.replace('DIE LINKE', '[Partei]')
+        sentence_redacted = sentence_redacted.replace('Wir Freie Demokraten', 'Wir')
+        sentence_redacted = sentence_redacted.replace('BÜNDNIS 90/DIE GRÜNEN', '[Partei]')
+        sentence_redacted = sentence_redacted.replace('Wir GRÜNEN', 'Wir')
+        sentence_redacted = sentence_redacted.replace('GRÜNEN', '[Partei]')
+        sentence_redacted = sentence_redacted.replace('SPD', '[Partei]')
 
     return jsonify({
-        'short': sentence,
+        'short': sentence_redacted,
+        'short_not_redacted': sentence,
         'long': paragraph,
         'headline': headline,
         'party': party,
