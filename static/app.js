@@ -54,6 +54,7 @@ $('.partybutton').click(function(el){
     $('blockquote').html($('blockquote').html().replace(current_quote.short_not_redacted, '<strong>' + current_quote.short_not_redacted + '</strong>'));
     $('blockquote').show();
 
+    scrollIntoViewIfNeeded(document.getElementsByClassName('correctBannerScrollAnchor')[0]);
     window.setTimeout(function(){
       scrollIntoViewIfNeeded(document.getElementsByClassName('correctBannerScrollAnchor')[0]);
     }, 50); // wait until DOM update is done
@@ -74,4 +75,5 @@ function scrollIntoViewIfNeeded(target) {
 
 $('#nextCiteBtn').click(function(){
   nextCite();
+  scrollIntoViewIfNeeded(document.getElementById('quotesection'));
 });
