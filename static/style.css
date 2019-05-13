@@ -1,13 +1,21 @@
 @font-face {
-  font-family: 'aleoregular';
+  font-family: 'aleo';
   src: url('Aleo-Regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'aleo';
+  src: url('Aleo-Bold-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
 body {
   text-align: center;
-  font-family: aleoregular;
+  font-family: aleo;
   font-size: 1.2em;
   margin: 0;
   padding: 0;
@@ -126,6 +134,13 @@ section {
 
     section blockquote p {
       margin: .5em 0;
+    }
+
+    section blockquote strong {
+      font-weight: bold;
+      background: #fed957;
+      padding: .125em .25em 0 .25em;
+      margin-left: -0.25em;
     }
 
 button, .btn {
