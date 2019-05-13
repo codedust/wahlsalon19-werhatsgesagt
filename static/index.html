@@ -11,21 +11,24 @@
     <h1>Wer hat's gesagt?</h1>
     <span>Wahlprogrammquiz zur Europawahl</span>
   </header>
-  <section>
+  <section id="quotesection">
     <span class="leftquote">„</span>
     <q>...</q>
     <span class="rightquote">“</span>
+    <div class="correctBannerScrollAnchor"></div>
+    <p class="correctBanner">Korrekt! Das Zitat stammt aus dem <span>{{Wahlprogramm der Partei [Partei]}}</span>:</p>
     <blockquote></blockquote>
     <a class="twitterBtn btn" target="_blank" href=""><img src="/static/twitter.png" style="height: .8em; margin-right: .5em;">Zitat twittern</a>
     <button id="nextCiteBtn" type="button" name="button"><img src="/static/arrow_right.png" style="height: .8em; margin-right: .5em;">Nächstes Zitat</button>
   </section>
-  <div class="partybutton" data-party="dielinke"><img src="static/logo_dielinke.png" alt="Die Linke"></div>
-  <div class="partybutton" data-party="gruene"><img src="static/logo_diegruenen.png" alt="Bündnis 90 / Die Grünen"></div>
-  <div class="partybutton" data-party="spd"><img src="static/logo_spd.png" alt="SPD"></div>
-  <br>
-  <div class="partybutton" data-party="cdu"><img src="static/logo_cducsu.png" alt="CDU/CSU"></div>
-  <div class="partybutton" data-party="fdp"><img src="static/logo_fdp.png" alt="FDP"></div>
-  <div class="partybutton" data-party="afd"><img src="static/logo_afd.png" alt="AfD"></div>
+  <div class="partybuttons">
+    <div class="partybutton" data-party="dielinke"><img src="static/logo_dielinke.png" alt="Die Linke"></div>
+    <div class="partybutton" data-party="gruene"><img src="static/logo_diegruenen.png" alt="Bündnis 90 / Die Grünen"></div>
+    <div class="partybutton" data-party="spd"><img src="static/logo_spd.png" alt="SPD"></div>
+    <div class="partybutton" data-party="cdu"><img src="static/logo_cducsu.png" alt="CDU/CSU"></div>
+    <div class="partybutton" data-party="fdp"><img src="static/logo_fdp.png" alt="FDP"></div>
+    <div class="partybutton" data-party="afd"><img src="static/logo_afd.png" alt="AfD"></div>
+  </div>
   <footer>
     <h3>Wer hat's gesagt?</h3>
     <p>Wahlprogrammquiz zur Europawahl. Ein Projekt von <a href="https://twitter.com/Basti_Schr">@Basti_Schr</a> und <a href="https://twitter.com/marcoh___">@marcoh___</a>. Entstanden beim <a href="https://datengui.de/wahlsalon/">Wahlsalon 2019</a> von <a href="https://codefor.de/">Code for Germany</a> und <a href="https://datengui.de/">Datenguide</a> in Berlin.</p>

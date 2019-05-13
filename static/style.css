@@ -105,6 +105,15 @@ section {
     }
   }
 
+  section p.correctBanner {
+    background: #84D904;
+    display: inline-block;
+    font-size: .95em;
+    padding: .5em 2em;
+    margin: 3em 0 0 0;
+    border-radius: 1em;
+  }
+
   section blockquote {
     font-size: .9em;
     margin: 2em 0 0 0;
@@ -139,13 +148,22 @@ button:active, .btn:active {
   box-shadow: 0 0 5px -0px #44707f inset;
 }
 
+.partybuttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 34.5em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .partybutton {
   display: inline-block;
-  border: 5px solid rgba(0, 0, 0, 0);
+  border: .25em solid rgba(0, 0, 0, 0);
   transition-duration: .3s;
   cursor: pointer;
-  width: 18vw;
-  height: 18vw;
+  width: 25vw;
+  height: 25vw;
   max-width: 10em;
   max-height: 10em;
   margin: .5em;
