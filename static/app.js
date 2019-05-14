@@ -1,8 +1,8 @@
 var current_quote = {};
-var current_hash = '';
+var current_hash = -1;
 
 function nextCite(hash){
-  if (hash == current_hash) {
+  if (hash === current_hash) {
     return;
   }
   $('.partybutton').removeClass('correct');
