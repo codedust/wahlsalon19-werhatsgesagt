@@ -1,10 +1,9 @@
 var current_quote = {};
-var nextCiteTimeout = null;
+var current_hash = '';
 
 function nextCite(hash){
-  if (nextCiteTimeout != null) {
-    window.clearTimeout(nextCiteTimeout);
-    nextCiteTimeout = null;
+  if (hash == current_hash) {
+    return;
   }
   $('.partybutton').removeClass('correct');
   $('.partybutton').removeClass('wrong');
@@ -27,6 +26,7 @@ function nextCite(hash){
     $('q').text(data.short);
     if (data.line_number != '' && data.sentence_number != '' && data.party != '') {
       location.hash = btoa(data.line_number + ',' + data.sentence_number + ',' + data.party);
+      current_hash = location.hash;
     }
     var url = location.href;
     var text = "Aus welchem Wahlprogramm stammt dieses Zitat? #Wahlprogrammquiz #Europawahl2019\n\n";
