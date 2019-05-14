@@ -25,7 +25,9 @@ function nextCite(hash){
   $.getJSON(request_url, function( data ) {
     current_quote = data;
     $('q').text(data.short);
-    location.hash = btoa(data.line_number + ',' + data.sentence_number + ',' + data.party);
+    if (data.line_number != '' && data.sentence_number != '' && data.party != '') {
+      location.hash = btoa(data.line_number + ',' + data.sentence_number + ',' + data.party);
+    }
     var url = location.href;
     var text = "Aus welchem Wahlprogramm stammt dieses Zitat? #Wahlprogrammquiz #Europawahl2019\n\n";
     var maxDataShortLength = 279-text.length-url.length-2;
