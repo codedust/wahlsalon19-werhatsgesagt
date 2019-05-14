@@ -24,7 +24,7 @@ function nextCite(hash){
   $.getJSON(request_url, function( data ) {
     current_quote = data;
     $('q').text(data.short);
-    if (data.line_number != '' && data.sentence_number != '' && data.party != '') {
+    if (data.line_number !== '' && data.sentence_number !== '' && data.party !== '') {
       location.hash = btoa(data.line_number + ',' + data.sentence_number + ',' + data.party);
       current_hash = location.hash;
     }
