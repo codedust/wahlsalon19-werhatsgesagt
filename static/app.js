@@ -29,10 +29,10 @@ function nextCite(hash){
       current_hash = location.hash;
     }
     var url = location.href;
-    var text = "Aus welchem Wahlprogramm stammt dieses Zitat? #Wahlprogrammquiz #Europawahl2019\n\n";
+    var text = "\n\nAus welchem Wahlprogramm stammt dieses Zitat? #Wahlprogrammquiz #Europawahl2019";
     var maxDataShortLength = 279-text.length-url.length-2;
     var quote = (data.short.length > maxDataShortLength ? data.short.substr(0, maxDataShortLength-3) + "..." : data.short);
-    $('.twitterBtn').attr("href", "https://twitter.com/intent/tweet?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent(text) + encodeURIComponent("„" + quote + "“"));
+    $('.twitterBtn').attr("href", "https://twitter.com/intent/tweet?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent("„" + quote + "“") + encodeURIComponent(text));
     scrollIntoViewIfNeeded(document.getElementById('quotesection'));
   });
 }
